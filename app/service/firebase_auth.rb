@@ -14,10 +14,14 @@ module FirebaseAuth
     end
 
     def get_user(uid:)
+      return unless uid
+
       get_account_info(local_id: [uid])&.users&.first
     end
 
     def update_user(uid:, params:)
+      return unless uid
+
       update_params = { local_id: uid }.merge(params)
       request = Google::Apis::IdentitytoolkitV3::SetAccountInfoRequest.new(update_params)
       @service.set_account_info(request)
