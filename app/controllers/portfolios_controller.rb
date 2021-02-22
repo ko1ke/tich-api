@@ -4,13 +4,11 @@ class PortfoliosController < AuthController
   # GET /portfolios
   def index
     @portfolios = Portfolio.all
-
-    render json: @portfolios
   end
 
   # GET /portfolios/1
   def show
-    render json: @portfolio
+    @portfolio
   end
 
   # POST /portfolios
@@ -18,7 +16,7 @@ class PortfoliosController < AuthController
     @portfolio = Portfolio.new(portfolio_params)
 
     if @portfolio.save
-      render json: @portfolio, status: :created, location: @portfolio
+      @portfolio
     else
       render json: @portfolio.errors, status: :unprocessable_entity
     end
@@ -27,7 +25,7 @@ class PortfoliosController < AuthController
   # PATCH/PUT /portfolios/1
   def update
     if @portfolio.update(portfolio_params)
-      render json: @portfolio
+      @portfolio
     else
       render json: @portfolio.errors, status: :unprocessable_entity
     end
