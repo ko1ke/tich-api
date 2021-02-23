@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://example.com/example.json",
+  "type": "array",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": [],
+  "examples": [
+    [
+      {
+        "ticker": "MSFT",
+        "unitPrice": 200.11,
+        "number": 11,
+        "note": "Great OSS contributor"
+      },
+      {
+        "ticker": "GOOG",
+        "unitPrice": 1200.11,
+        "number": 7,
+        "note": "Firebase is awesome"
+      }
+    ]
+  ],
+  "additionalItems": true,
+  "items": {
+    "id": "#/items",
+    "anyOf": [
+      {
+        "id": "#/items/anyOf/0",
+        "type": "object",
+        "title": "The first anyOf schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": {},
+        "examples": [
+          {
+            "ticker": "MSFT",
+            "unitPrice": 200.11,
+            "number": 11,
+            "note": "Great OSS contributor"
+          }
+        ],
+        "required": [
+          "ticker",
+          "unitPrice",
+          "number",
+          "note"
+        ],
+        "properties": {
+          "ticker": {
+            "id": "#/items/anyOf/0/properties/ticker",
+            "type": "string",
+            "title": "The ticker schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "MSFT"
+            ]
+          },
+          "unitPrice": {
+            "id": "#/items/anyOf/0/properties/unitPrice",
+            "type": "number",
+            "title": "The unitPrice schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0.0,
+            "examples": [
+              200.11
+            ]
+          },
+          "number": {
+            "id": "#/items/anyOf/0/properties/number",
+            "type": "integer",
+            "title": "The number schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+              11
+            ]
+          },
+          "note": {
+            "id": "#/items/anyOf/0/properties/note",
+            "type": "string",
+            "title": "The note schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "Great OSS contributor"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    ]
+  }
+}

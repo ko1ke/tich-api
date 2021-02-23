@@ -1,6 +1,6 @@
 class Portfolio < ApplicationRecord
-  validates :ticker, presence: true, length: { maximum: 20 }
-  validates :number, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
-  validates :unit_price, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
-  validates :uid, presence: true
+  PROFILE_JSON_SCHEMA = Rails.root.join('config', 'schemas', 'portfolio_schema.json').to_s
+  validates :sheet, json: { schema: PROFILE_JSON_SCHEMA }
+
+  validates :uid, presence: true, uniqueness: true
 end

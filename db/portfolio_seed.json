@@ -1,0 +1,14 @@
+[
+  {
+    "ticker": "MSFT",
+    "unitPrice": 200.11,
+    "number": 11,
+    "note": "Great OSS contributor"
+  },
+  {
+    "ticker": "GOOG",
+    "unitPrice": 1200.11,
+    "number": 7,
+    "note": "Firebase is awesome"
+  }
+]

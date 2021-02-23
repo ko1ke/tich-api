@@ -40,4 +40,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+# Communicate with FireBase
 gem 'google-api-client', '~> 0.53'
+
+# Validate JSON according to schemas
+gem 'activerecord_json_validator'
