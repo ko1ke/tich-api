@@ -3,7 +3,7 @@ require 'google/apis/identitytoolkit_v3'
 module FirebaseAuth
   class Client
     def initialize
-      service_account_key_json_path = Rails.root.join('config', 'tich-de99a-firebase-adminsdk-v5ajg-262446fb32.json')
+      service_account_key_json_path = Rails.root.join('config', 'tich-de99a-firebase-adminsdk-v5ajg-9af12022dc.json')
       @service = Google::Apis::IdentitytoolkitV3::IdentityToolkitService.new
       @service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
         json_key_io: File.open(service_account_key_json_path),
