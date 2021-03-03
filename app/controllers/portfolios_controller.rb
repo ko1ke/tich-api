@@ -18,7 +18,15 @@ class PortfoliosController < AuthController
 
   # Only allow a trusted parameter "white list" through.
   def portfolio_params
-    params.permit(:sheet).merge(uid: uid)
-    # params.require(:portfolio).permit(:ticker, :unit_price, :number, :note).merge(uid: uid)
+    para = params.require(:portfolio).permit(:sheet).merge(uid: uid)
+    if para[:sheet].present?
+      sheet = JSON.parse(para[:sheet])
+      sheet.map do |item|
+        item.merge!({ "unitPrice": item['unitPrice'].to_f,
+                      "number": item['number'].to_i })
+      end
+      para[:sheet] = sheet
+    end
+    para
   end
 end
