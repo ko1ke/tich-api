@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Portfolio.all.delete_all
+User.all.delete_all
 
 dummy_uid = 'fehyMsvNalfinbrGlUREooQqFyJ3'
+dummy_email = 'test@test.com'
 json_path = File.join(Rails.root, 'db', 'portfolio_seed.json')
 sheet = File.read(json_path)
+
+User.create!(uid: dummy_uid, email: dummy_email)
 Portfolio.create!(uid: dummy_uid, sheet: JSON.parse(sheet))

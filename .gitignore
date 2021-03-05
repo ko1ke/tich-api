@@ -25,4 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-tich-de99a-firebase-adminsdk-v5ajg-9af12022dc.json
+
+# Ignore credential files.
+.env
+
+# Ignore redis snapshot
+dump.rdb
