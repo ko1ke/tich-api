@@ -65,6 +65,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
+    chronic (0.10.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     dotenv (2.7.6)
@@ -72,6 +73,11 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    faraday (1.3.0)
+      faraday-net_http (~> 1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
+    faraday-net_http (1.0.1)
     ffi (1.14.2)
     firebase-auth-rails (0.1.2)
       firebase_id_token (~> 2.3, >= 2.3.0)
@@ -114,6 +120,7 @@ GEM
     minitest (5.14.3)
     msgpack (1.4.2)
     multi_xml (0.6.0)
+    multipart-post (2.1.1)
     nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
@@ -161,6 +168,7 @@ GEM
     redis (4.2.5)
     redis-namespace (1.8.1)
       redis (>= 3.0.4)
+    ruby2_keywords (0.0.4)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -179,6 +187,8 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -189,6 +199,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   dotenv-rails
+  faraday
   firebase-auth-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
@@ -200,6 +211,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  whenever
 
 RUBY VERSION
    ruby 2.6.6p146

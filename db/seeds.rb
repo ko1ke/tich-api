@@ -15,3 +15,4 @@ sheet = File.read(json_path)
 
 user = User.create!(uid: uid, email: email)
 user.create_portfolio!(sheet: JSON.parse(sheet))
+ScrapeSp500TickersJob.perform_now

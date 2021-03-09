@@ -46,5 +46,11 @@ gem 'firebase-auth-rails'
 # Validate JSON according to schemas
 gem 'activerecord_json_validator'
 
-# Credential 
+# Credential
 gem 'dotenv-rails'
+
+# HTTP client
+gem 'faraday'
+
+# cron job
+gem 'whenever', require: false
