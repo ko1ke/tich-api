@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_121922) do
+ActiveRecord::Schema.define(version: 2021_03_08_234955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "portfolios", force: :cascade do |t|
-    t.string "uid", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.json "sheet", default: [], null: false
-    t.index ["uid"], name: "index_portfolios_on_uid"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
