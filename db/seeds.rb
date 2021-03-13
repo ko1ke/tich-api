@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Portfolio.all.delete_all
 User.all.delete_all
+Ticker.all.delete_all
 
 uid = 'fehyMsvNalfinbrGlUREooQqFyJ3'
 email = 'test@test.com'
@@ -17,3 +19,6 @@ user = User.create!(uid: uid, email: email)
 user.create_portfolio!(sheet: JSON.parse(sheet))
 ScrapeSp500TickersJob.perform_now
 ScrapeNasdaq100TickersJob.perform_now
+
+pp '--- 🎉 Scraping result 🎉 ---'
+pp Ticker.all.pluck(:symbol, :formal_name, :index)
