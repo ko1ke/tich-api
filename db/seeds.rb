@@ -21,4 +21,4 @@ ScrapeSp500TickersJob.perform_now
 ScrapeNasdaq100TickersJob.perform_now
 
 pp '--- 🎉 Scraping result 🎉 ---'
-pp Ticker.all.pluck(:symbol, :formal_name, :index)
+pp Ticker.all.pluck(:symbol, :formal_name)

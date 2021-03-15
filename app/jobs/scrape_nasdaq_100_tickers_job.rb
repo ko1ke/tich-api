@@ -15,13 +15,13 @@ class ScrapeNasdaq100TickersJob < ApplicationJob
       # remove string like "(Class C)"
       formal_name = formal_name.gsub(/\s?\(.*?\)\s?/, '')
       # remove extra string for search
-      formal_name = formal_name.gsub(/,? Inc\.?\Z|,? Ltd\.?\Z|Group\Z|Corporation\Z|Corp\.?\Z|Co\.?\Z|& Co\.?\Z/, '').strip
+      formal_name = formal_name.gsub(/,? Inc\.?\Z|,? Ltd\.?\Z|Group\Z|Corporation\Z|Corp\.?\Z|Co\.?\Z|& Co\.?\Z/,
+                                     '').strip
       # it may be less noisy when searching news
       formal_name = 'Google' if formal_name == 'Alphabet'
 
       Ticker.find_or_create_by!(symbol: symbol,
-                                formal_name: formal_name,
-                                index: 'nasdaq100')
+                                formal_name: formal_name)
     end
   end
 end
