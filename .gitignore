@@ -31,3 +31,6 @@
 
 # Ignore redis snapshot
 /redis/dump.rdb
+
+# Ignore GCP setting file
+gcp-config.json
