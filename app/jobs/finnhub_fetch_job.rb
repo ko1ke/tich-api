@@ -6,7 +6,7 @@ class FinnhubFetchJob < ApplicationJob
 
     # TODO: Timer to avoid Limit 60 API calls/minute (1 call/1 sec)
     connection = Faraday.new(url: 'https://finnhub.io')
-    limit_num = 3
+    limit_num = 5
     today = Time.new.strftime('%Y-%m-%d')
     one_week_ago = Time.new.prev_week.strftime('%Y-%m-%d')
 
@@ -23,14 +23,16 @@ class FinnhubFetchJob < ApplicationJob
         body = news['summary']
         link_url = news['url']
         image_url = news['image']
-        fetched_from = 'finnhub'
+        fetched_from = 'Finnhub'
         original_created_at = Time.at(news['datetime'])
+        original_id = news['id']
 
-        News.create!(headline: headline, body: body,
-                     link_url: link_url,
-                     image_url: image_url,
-                     fetched_from: fetched_from, symbol: ticker_symbol,
-                     original_created_at: original_created_at)
+        News.find_or_create_by!(headline: headline, body: body,
+                                link_url: link_url,
+                                image_url: image_url,
+                                fetched_from: fetched_from, symbol: ticker_symbol,
+                                original_created_at: original_created_at,
+                                original_id: original_id)
         timer.set_time_remaining
         sleep(timer.time_remaining)
       end
