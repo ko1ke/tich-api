@@ -4,7 +4,7 @@ RUN mkdir /tich-api
 WORKDIR /tich-api
 COPY Gemfile /tich-api/Gemfile
 COPY Gemfile.lock /tich-api/Gemfile.lock
-RUN bundle install
+RUN bundle install -j4
 COPY . /tich-api
 
 # Add a script to be executed every time the container starts.
