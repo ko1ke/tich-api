@@ -21,7 +21,7 @@ class RedditFetchJob < ApplicationJob
         data = child['data']
         headline = data['title']
         link_url = data['url']
-        image_url = data['thumbnail']
+        image_url = data['thumbnail']&.include?('https:') ? data['thumbnail'] : nil
         fetched_from = 'reddit'
         original_created_at = Time.at(data['created_utc'])
         original_id = data['id']
