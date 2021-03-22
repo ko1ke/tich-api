@@ -60,3 +60,6 @@ gem 'faraday'
 
 # cron job
 gem 'whenever', require: false
+
+# Pagination
+gem 'kaminari'
