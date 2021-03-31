@@ -1,5 +1,6 @@
 class HackerNewsFetchJob < ApplicationJob
   queue_as :default
+  retry_on StandardError, wait: 5.seconds, attempts: 3
 
   def perform(limit_num: 3, symbols: Ticker.all.pluck(:symbol))
     # Ex. URL: http://hn.algolia.com/api/v1/search_by_date?query=facebook&hitsPerPage=10

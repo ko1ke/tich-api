@@ -1,5 +1,6 @@
 class FinnhubFetchJob < ApplicationJob
   queue_as :default
+  retry_on StandardError, wait: 5.seconds, attempts: 3
 
   def perform(limit_num: 3, symbols: Ticker.all.pluck(:symbol), klass: News::Company)
     unless [News::Company, News::Market].include?(klass)

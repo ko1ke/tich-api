@@ -1,5 +1,6 @@
 class FetchStockPriceFromSpreadSheetJob < ApplicationJob
   queue_as :default
+  retry_on StandardError, JSON::ParserError, wait: 5.seconds, attempts: 3
 
   def perform(*_args)
     # Find first sheet

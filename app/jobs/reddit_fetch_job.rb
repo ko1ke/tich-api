@@ -1,12 +1,12 @@
 class RedditFetchJob < ApplicationJob
   queue_as :default
+  retry_on StandardError, JSON::ParserError, wait: 5.seconds, attempts: 3
+
+  # JSON Parse Error occurs sometimes
+  # JSON::ParserError (767: unexpected token at '<!doctype html><html><title>Ow! -- reddit.com</title><style>body{text-align:center;position:absolute;top:50%;margin:0;margin-top:-275px;width:100%}h2,h3{color:#555;font:bold 200%/100px sans-serif;margin:0}h3,p{color:#777;font:normal 150% sans-serif}p{font-size: 100%;font-style:italic;margin-top:2em;}</style><img src=//www.redditstatic.com/trouble-afoot.jpg alt=""><h2>all of our servers are busy right now</h2><h3>please try again in a minute</h3><p>(error code: 503)'):
 
   def perform(limit_num: 3, symbols: Ticker.all.pluck(:symbol))
     # Ex. URL: https://www.reddit.com/search.json?q=facebook&limit=5
-
-    # TODO: Add error handling
-    # JSON::ParserError (767: unexpected token at '<!doctype html><html><title>Ow! -- reddit.com</title><style>body{text-align:center;position:absolute;top:50%;margin:0;margin-top:-275px;width:100%}h2,h3{color:#555;font:bold 200%/100px sans-serif;margin:0}h3,p{color:#777;font:normal 150% sans-serif}p{font-size: 100%;font-style:italic;margin-top:2em;}</style><img src=//www.redditstatic.com/trouble-afoot.jpg alt=""><h2>all of our servers are busy right now</h2><h3>please try again in a minute</h3><p>(error code: 503)'):
-
     connection = Faraday.new(url: 'https://www.reddit.com')
 
     symbols.each do |symbol|
