@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   resources :users, only: %i[create]
   resources :portfolios, only: %i[index create]
-  resources :news, only: %i[index]
+  namespace :news do
+    resources :markets, only: %i[index]
+    resources :companies, only: %i[index]
+  end
   resources :tickers, only: %i[index]
   # get '/news/:symbol', to: 'news#index', as: 'news'
 
