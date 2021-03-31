@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_023326) do
+ActiveRecord::Schema.define(version: 2021_03_31_012906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_023326) do
     t.string "symbol"
     t.datetime "original_created_at"
     t.string "original_id"
+    t.string "type", default: "News::Company", null: false
   end
 
   create_table "portfolios", force: :cascade do |t|
