@@ -7,7 +7,7 @@ class PortfoliosController < AuthController
   # POST /portfolios
   def create
     @portfolio = Portfolio.find_or_initialize_by(user_id: current_user.id)
-    if @portfolio.update_attributes(portfolio_params)
+    if @portfolio.update(portfolio_params)
       @portfolio
     else
       render json: @portfolio.errors, status: :unprocessable_entity
@@ -18,15 +18,6 @@ class PortfoliosController < AuthController
 
   # Only allow a trusted parameter "white list" through.
   def portfolio_params
-    para = params.require(:portfolio).permit(:sheet).merge(user_id: current_user.id)
-    if para[:sheet].present?
-      sheet = JSON.parse(para[:sheet])
-      sheet.map do |item|
-        item.merge!({ "unitPrice": item['unitPrice'].to_f,
-                      "number": item['number'].to_i })
-      end
-      para[:sheet] = sheet
-    end
-    para
+    params.require(:portfolio).permit(sheet: %i[ticker note unitPrice number])
   end
 end
