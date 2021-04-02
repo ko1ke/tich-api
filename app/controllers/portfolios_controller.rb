@@ -18,6 +18,6 @@ class PortfoliosController < AuthController
 
   # Only allow a trusted parameter "white list" through.
   def portfolio_params
-    params.require(:portfolio).permit(sheet: %i[ticker note unitPrice number])
+    params.require(:portfolio).permit(sheet: %i[ticker note targetPrice])
   end
 end
