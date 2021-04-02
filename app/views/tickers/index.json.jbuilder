@@ -1,1 +1,1 @@
-json.array! @tickers.map(&:symbol).sort
+json.array! @tickers, :symbol, :formal_name

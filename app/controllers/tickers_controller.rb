@@ -1,5 +1,5 @@
 class TickersController < ApplicationController
   def index
-    @tickers = Ticker.all
+    @tickers = Ticker.order(:symbol)
   end
 end
