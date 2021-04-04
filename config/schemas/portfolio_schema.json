@@ -8,12 +8,12 @@
   "examples": [
     [
       {
-        "ticker": "MSFT",
+        "symbol": "MSFT",
         "targetPrice": 200.11,
         "note": "Great OSS contributor"
       },
       {
-        "ticker": "GOOG",
+        "symbol": "GOOG",
         "targetPrice": 1200.11,
         "note": "Firebase is awesome"
       }
@@ -31,21 +31,21 @@
         "default": {},
         "examples": [
           {
-            "ticker": "MSFT",
+            "symbol": "MSFT",
             "targetPrice": 200.11,
             "note": "Great OSS contributor"
           }
         ],
         "required": [
-          "ticker",
+          "symbol",
           "targetPrice",
           "note"
         ],
         "properties": {
-          "ticker": {
-            "id": "#/items/anyOf/0/properties/ticker",
+          "symbol": {
+            "id": "#/items/anyOf/0/properties/symbol",
             "type": "string",
-            "title": "The ticker schema",
+            "title": "The symbol schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
