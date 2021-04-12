@@ -21,3 +21,5 @@ ScrapeNasdaq100TickersJob.perform_now
 
 pp '--- 🎉 Scraping result 🎉 ---'
 pp Ticker.all.pluck(:symbol, :formal_name)
+
+FetchStockPriceFromSpreadSheetJob.perform_now
