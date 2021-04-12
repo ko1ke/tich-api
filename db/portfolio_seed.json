@@ -1,14 +1,12 @@
 [
   {
-    "ticker": "MSFT",
-    "unitPrice": 200.11,
-    "number": 11,
+    "symbol": "MSFT",
+    "targetPrice": 200.11,
     "note": "Great OSS contributor"
   },
   {
-    "ticker": "GOOG",
-    "unitPrice": 1200.11,
-    "number": 7,
+    "symbol": "GOOG",
+    "targetPrice": 1200.11,
     "note": "Firebase is awesome"
   }
 ]

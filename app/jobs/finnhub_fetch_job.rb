@@ -2,11 +2,13 @@ class FinnhubFetchJob < ApplicationJob
   queue_as :default
   retry_on StandardError, wait: 5.seconds, attempts: 3
 
-  def perform(limit_num: 3, symbols: Ticker.all.pluck(:symbol), klass: News::Company)
-    unless [News::Company, News::Market].include?(klass)
+  def perform(limit_num: 3, symbols: Ticker.all.pluck(:symbol), klass_name: 'company')
+    unless %w[company market].include?(klass_name)
       raise ArgumentError,
-            'klass must be News::Company or News::Market'
+            'klass_name must be "company" or "market"'
     end
+
+    klass = klass_name == 'company' ? News::Company : News::Market
 
     # Market news doesn't need symbol
     symbols = [nil] if klass == News::Market
