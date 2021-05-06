@@ -17,9 +17,7 @@ sheet = File.read(json_path)
 
 user = User.create!(uid: uid, email: email)
 user.create_portfolio!(sheet: JSON.parse(sheet))
-ScrapeNasdaq100TickersJob.perform_now
+SpreadSheetFetchJob.perform_now
 
 pp '--- 🎉 Scraping result 🎉 ---'
-pp Ticker.all.pluck(:symbol, :formal_name)
-
-FetchStockPriceFromSpreadSheetJob.perform_now
+pp Ticker.all.pluck(:symbol, :formal_name, :price, :change)

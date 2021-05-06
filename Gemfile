@@ -46,9 +46,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Communicate with FireBase Auth
 gem 'firebase-auth-rails'
 
-# Communicate with Google spread sheet
-gem 'google_drive'
-
 # Validate JSON according to schemas
 gem 'activerecord_json_validator'
 
@@ -57,6 +54,7 @@ gem 'dotenv-rails'
 
 # HTTP client
 gem 'faraday'
+gem 'faraday_middleware'
 
 # cron job
 gem 'whenever', require: false
