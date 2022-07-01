@@ -1,24 +1,45 @@
-# README
+# アプリの目的
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+米国 Nasdaq100 企業及び金融マーケットのニュースを自動で収集し、ブラウザで閲覧できるようにする。
+実物はここ　https://tich-de99a.web.app/
 
-Things you may want to cover:
+# 作った経緯
 
-* Ruby version
+米国テック株投資を始めたものの、米国のテック企業について全然詳しくない。マーケットについても同様。であれば、cron で API に定期的にリクエストを投げ、効率的に情報収集しよう、というのが端緒。~~いちいちググるのめんどくさい~~
 
-* System dependencies
+# 概要
 
-* Configuration
+## それぞれのページについての説明
 
-* Database creation
+基本的に左のメニューバーで選択してアクセス。ログインのみ画面最上部の LOGIN ボタンをクリックしてアクセス。
 
-* Database initialization
+- TopPage: トップページ。それぞれのページについての簡単な説明を記述
+- LOGIN： E メールか、Google ログインで登録＆ログインできる
+- Company News: 企業ごとのミクロなニュースを閲覧するためのページ。ティッカーシンボルで検索ができる。登録＋ログインしていれば、ポートフォリオに登録したティッカーを"You Favorites"でまとめて検索可能。
+- Market News: 金融市場のマクロなニュースを閲覧するためのページ。キーワードで検索できる。
+- Portfolio: ログインしたときのみアクセス可能。ティッカーシンボル、およびその目標価格とメモ書きを登録できる。登録したティッカーシンボルは株価が表示される（一日ごとの更新）。また、登録したティッカーシンボルは Company News で検索するときに"You Favorites"でまとめて検索できる。
+- Setting: 設定、を作ろうとしたが放置。
 
-* How to run the test suite
+## ニュース取得元
 
-* Services (job queues, cache servers, search engines, etc.)
+以下の 3 つ。
 
-* Deployment instructions
+- Finnhub: 金融や仮想通貨系のニュース API を提供しているサービス https://finnhub.io/
+- Reddit: 海外の掲示板サービス。日本でいうと５ちゃんねる的なサービス https://www.reddit.com/
+- Hacker News: テクノロジー系がメインのニュースサイト https://news.ycombinator.com/
 
-* ...
+## Nasdaq100 ティッカーシンボル取得元
+
+Wikipedia の関連記事からスクレイピング。
+
+## 株価の取得元
+
+Google spread sheet。ティッカーおよび GOOGLEFINNCE 関数（株価を取得できる関数）をティッカーに適用した spread sheet を作成。外部公開したそれに、リクエストを投げることで、ティッカーとその株価を取得できるようにした。
+
+# 主な使用技術
+
+- Ruby on Rails
+- faraday
+- cron
+- Docker
+- Heroku
