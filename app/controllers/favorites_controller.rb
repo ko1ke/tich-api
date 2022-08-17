@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class FavoritesController < AuthController
   def create
     @favorite = Favorite.create!(favorite_params)
   end
