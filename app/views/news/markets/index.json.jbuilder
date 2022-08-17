@@ -1,7 +1,16 @@
 json.contents do
-  json.array! @news, :id, :headline, :body,
-              :link_url, :image_url, :fetched_from, :symbol,
-              :original_created_at
+  json.array! @news do |news|
+    json.id news.id
+    json.headline news.headline
+    json.body news.body
+    json.link_url news.link_url
+    json.image_url news.image_url
+    json.fetched_from news.fetched_from
+    json.symbol news.symbol
+    json.original_created_at news.original_created_at
+    # @current_user can be nil, because the news can be accessed without login
+    json.favored_by_current_user news.favored_by_user?(@current_user&.id)
+  end
 end
 
 json.page do
