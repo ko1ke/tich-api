@@ -1,6 +1,4 @@
 class News::Market < News
-  paginates_per 9
-
   def self.search(keyword)
     news = News::Market
     if keyword.present?
