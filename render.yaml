@@ -1,0 +1,43 @@
+databases:
+  - name: tich_api_db
+    plan: free 
+    databaseName: tich_api_db
+    user: tich_api
+services:
+  - type: redis
+    name: cache
+    plan: free 
+    ipAllowList: [] # only allow internal connections
+    maxmemoryPolicy: allkeys-lfu
+  - type: worker
+    name: sidekiq-worker
+    plan: free
+    env: ruby
+    buildCommand: bundle install
+    startCommand: bundle exec sidekiq
+    autoDeploy: false
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: cache
+          property: connectionString
+  # web
+  - type: web
+    name: tich
+    plan: free 
+    env: ruby
+    buildCommand: "./bin/render-web-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tich_api_db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: cache
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
