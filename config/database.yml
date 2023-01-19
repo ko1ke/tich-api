@@ -85,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: tich_api_production
-  username: tich_api
-  password: <%= ENV['TICH_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
