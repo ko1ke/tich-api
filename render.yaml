@@ -9,21 +9,6 @@ services:
     plan: free 
     ipAllowList: [] # only allow internal connections
     maxmemoryPolicy: allkeys-lfu
-  - type: worker
-    name: sidekiq-worker
-    plan: free 
-    env: ruby
-    buildCommand: bundle install
-    startCommand: bundle exec sidekiq
-    autoDeploy: false
-    envVars:
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: cache
-          property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
   - type: web
     name: tich
     plan: free 
