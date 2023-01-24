@@ -1,6 +1,5 @@
-class NewsController < ApplicationController
+class NewsController < AuthController
   def index
-    authenticate_user
     @news = News.search(params[:keyword], current_user.id).sort_by_newest.page params[:page]
   end
 end
