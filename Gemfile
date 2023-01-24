@@ -62,3 +62,6 @@ gem 'whenever', require: false
 
 # Pagination
 gem 'kaminari'
+
+# Payment
+gem 'stripe'
