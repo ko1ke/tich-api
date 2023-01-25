@@ -37,10 +37,14 @@ Wikipedia の関連記事からスクレイピング。
 
 Google spread sheet。ティッカーおよび GOOGLEFINNCE 関数（株価を取得できる関数）をティッカーに適用した spread sheet を作成。外部公開したそれに、リクエストを投げることで、ティッカーとその株価を取得できるようにした。
 
+## 投げ銭
+
+右上のコーヒーアイコンをクリックすると、stripe経由で投げ銭が可能（テストのAPIキーを使用しているため、実際に支払われることはない）
+
 # 主な使用技術
 
 - Ruby on Rails
 - faraday
 - cron
 - Docker
-- Heroku
+- ~~Heroku~~ -> render.com
