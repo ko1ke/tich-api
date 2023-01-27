@@ -7,7 +7,7 @@ json.contents do
     json.image_url news.image_url
     json.fetched_from news.fetched_from
     json.symbol news.symbol
-    json.original_created_at news.original_created_at
+    json.original_created_at l(news.original_created_at, format: :middle)
     # @current_user can be nil, because the news can be accessed without login
     json.favored_by_current_user news.favored_by_user?(@current_user&.id)
   end

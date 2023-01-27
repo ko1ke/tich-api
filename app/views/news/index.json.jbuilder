@@ -7,7 +7,7 @@ json.contents do
     json.image_url news.image_url
     json.fetched_from news.fetched_from
     json.symbol news.symbol
-    json.original_created_at news.original_created_at
+    json.original_created_at l(news.original_created_at, format: :middle)
     json.favored_by_current_user true
   end
 end
