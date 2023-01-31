@@ -34,3 +34,6 @@
 
 # Ignore GCP setting file
 gcp-config.json
+
+# Ignore simplecov output files
+coverage
