@@ -4,6 +4,9 @@ up:
 down:
 	docker-compose down
 
+build:
+	docker-compose build
+
 c:
 	docker-compose run web rails c
 
@@ -22,4 +25,7 @@ rspec:
 cov:
 	open -a '/Applications/Google Chrome.app' coverage/index.html
 
-.PHONY: up down c seed migrate rollback rspec cov
+correct:
+	docker-compose run web rubocop --auto-correct 
+
+.PHONY: up down build c seed migrate rollback rspec cov correct
