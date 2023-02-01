@@ -5,7 +5,9 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
+      TZ: Asia/Tokyo
   redis:
     image: redis:latest
     ports:
@@ -25,4 +27,5 @@ services:
       - db
       - redis
     environment:
-      REDIS_URL: redis://redis:6379
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_HOST=db
