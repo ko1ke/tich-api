@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_122210) do
+ActiveRecord::Schema.define(version: 2023_01_31_122310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_122210) do
   end
 
   create_table "tickers", force: :cascade do |t|
-    t.string "symbol", null: false
-    t.string "formal_name", null: false
+    t.string "symbol", default: "", null: false
+    t.string "formal_name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "price", precision: 8, scale: 3, default: "0.0"
