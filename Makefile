@@ -19,4 +19,7 @@ rollback:
 rspec:
 	docker-compose run web rspec
 
-.PHONY: up down c seed migrate rollback rspec
+cov:
+	open -a '/Applications/Google Chrome.app' coverage/index.html
+
+.PHONY: up down c seed migrate rollback rspec cov
