@@ -1,3 +1,5 @@
+[![Ruby on Rails CI](https://github.com/ko1ke/tich-api/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/ko1ke/tich-api/actions/workflows/rubyonrails.yml)
+
 # アプリの目的
 
 米国 Nasdaq100 企業及び金融マーケットのニュースを自動で収集し、ブラウザで閲覧できるようにする。
