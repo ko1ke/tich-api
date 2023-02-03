@@ -4,7 +4,7 @@ RSpec.describe 'User', type: :request do
   let(:user_attributes) { attributes_for(:user, :login_user) }
   let(:user) { create(:user, :login_user) }
 
-  describe '#create' do
+  describe 'POST /users' do
     context 'when payload is present' do
       before do
         payload = { 'sub' => user_attributes[:uid],

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Ticker', type: :request do
   let(:ticker) { create(:ticker) }
 
-  describe '#index' do
+  describe 'GET /tickers' do
     it 'return status 200' do
       get '/tickers.json'
       expect(response).to have_http_status(200)
