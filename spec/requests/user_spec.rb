@@ -15,20 +15,24 @@ RSpec.describe 'User', type: :request do
       context 'and a user is not craeted yet' do
         context 'and the uid is not registered' do
           it 'creates a user record' do
-            expect do
-              post '/users.json'
-            end.to change(User.all, :count).by(1)
-            expect(response).to have_http_status(200)
-            expect(JSON.parse(response.body)['uid']).to eq user_attributes[:uid]
+            aggregate_failures do
+              expect do
+                post '/users.json'
+              end.to change(User.all, :count).by(1)
+              expect(response).to have_http_status(200)
+              expect(JSON.parse(response.body)['uid']).to eq user_attributes[:uid]
+            end
           end
         end
         context 'and the uid has been registered already' do
           it 'does not create user' do
             create(:user, :login_user, email: "#{SecureRandom.hex(3)}@email.com")
-            expect do
-              post '/users.json'
-            end.to change(User.all, :count).by(0)
-            expect(response).to have_http_status(422)
+            aggregate_failures do
+              expect do
+                post '/users.json'
+              end.to change(User.all, :count).by(0)
+              expect(response).to have_http_status(422)
+            end
           end
         end
       end
@@ -36,11 +40,13 @@ RSpec.describe 'User', type: :request do
       context 'and a user has been craeted already' do
         it 'saves a user record' do
           u = user
-          expect do
-            post '/users.json'
-          end.to change(User.all, :count).by(0)
-          expect(response).to have_http_status(200)
-          expect(JSON.parse(response.body)['uid']).to eq u.uid
+          aggregate_failures do
+            expect do
+              post '/users.json'
+            end.to change(User.all, :count).by(0)
+            expect(response).to have_http_status(200)
+            expect(JSON.parse(response.body)['uid']).to eq u.uid
+          end
         end
       end
     end
