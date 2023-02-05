@@ -63,7 +63,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'firebase-auth-rails'
 
 # Validate JSON according to schemas
-gem 'activerecord_json_validator'
+gem 'json-schema'
 
 # Credential
 gem 'dotenv-rails'
