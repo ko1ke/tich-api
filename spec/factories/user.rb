@@ -3,7 +3,8 @@ FactoryBot.define do
     sequence(:uid) { |n| "uid_#{n}" }
     sequence(:email) { |n| "test_#{n}@test.com" }
 
-    trait :another do
+    trait :login_user do
+      uid { 'uid' }
       email { 'test_another@test.com' }
     end
   end

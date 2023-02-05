@@ -37,6 +37,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec_junit_formatter', require: false
@@ -62,7 +63,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'firebase-auth-rails'
 
 # Validate JSON according to schemas
-gem 'activerecord_json_validator'
+gem 'json-schema'
 
 # Credential
 gem 'dotenv-rails'

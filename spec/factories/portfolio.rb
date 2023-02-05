@@ -4,8 +4,8 @@ FactoryBot.define do
       [
         {
           "symbol": Faker::Finance.ticker,
-          "targetPrice": Faker::Number.decimal(l_digits: 2),
-          "note": Faker::Lorem.sentence
+          "note": Faker::Lorem.sentence,
+          "targetPrice": Faker::Number.decimal(l_digits: 2)
         }
       ]
     end
@@ -13,6 +13,16 @@ FactoryBot.define do
 
     trait :blank_sheet do
       sheet { [] }
+    end
+
+    trait :invalid_sheet do
+      sheet do
+        [
+          {
+            'targetPrice' => 'str'
+          }
+        ]
+      end
     end
   end
 end

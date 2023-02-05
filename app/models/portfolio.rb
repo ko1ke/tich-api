@@ -1,6 +1,19 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
 
-  PROFILE_JSON_SCHEMA = Rails.root.join('config', 'schemas', 'portfolio_schema.json').to_s
-  validates :sheet, json: { schema: PROFILE_JSON_SCHEMA }
+  SHEET_SCHEMA = {
+    type: 'array',
+    items: {
+      allOf: [
+        type: 'object',
+        required: %w[symbol note targetPrice],
+        properties: {
+          symbol: { type: 'string' },
+          note: { type: 'string' },
+          targetPrice: { type: %w[number string] }
+        }
+      ]
+    }
+  }.freeze
+  validates :sheet, json: { schema: SHEET_SCHEMA }
 end

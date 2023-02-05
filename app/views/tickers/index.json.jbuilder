@@ -1,1 +1,1 @@
-json.array! @tickers, :symbol, :formal_name
+json.array! @tickers, :id, :symbol, :formal_name
