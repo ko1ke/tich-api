@@ -17,7 +17,7 @@ RSpec.describe 'SpreadSheetFetchJob', type: :job do
            )
   end
   after do
-    WebMock.enable!
+    WebMock.disable!
   end
 
   describe '#perform_now' do
