@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'SpreadSheetFetchJob', type: :job do
+  include_context 'webmock_switching'
   let(:exec_path) { 'this_is_dummy' }
   let(:response_body) { [{ "symbol": 'MSFT', "formalName": 'Microsoft', "price": 200, 'change': 2 }].to_json }
 
   before do
     ActiveJob::Base.queue_adapter = :test
 
-    WebMock.enable!
     ENV['GAS_EXEC_PATH'] = exec_path
     WebMock.stub_request(:get, "https://script.google.com/#{exec_path}")
            .to_return(
@@ -15,9 +15,6 @@ RSpec.describe 'SpreadSheetFetchJob', type: :job do
              status: 200,
              headers: { 'Content-Type' => 'application/json' }
            )
-  end
-  after do
-    WebMock.disable!
   end
 
   describe '#perform_now' do
