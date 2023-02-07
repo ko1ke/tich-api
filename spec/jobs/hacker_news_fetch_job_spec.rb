@@ -14,7 +14,6 @@ RSpec.describe 'HackerNewsFetchJob', type: :job do
   let(:ticker) { create(:ticker, symbol: 'MSFT', formal_name: 'Microsoft', price: 1) }
 
   before do
-    ActiveJob::Base.queue_adapter = :test
     WebMock.stub_request(:get, "https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=3&query=#{ticker.formal_name}")
            .to_return(
              body: response_body,
@@ -32,6 +31,9 @@ RSpec.describe 'HackerNewsFetchJob', type: :job do
   end
 
   describe '#perform_later' do
+    before do
+      ActiveJob::Base.queue_adapter = :test
+    end
     it 'enqueue job' do
       expect do
         HackerNewsFetchJob.perform_later

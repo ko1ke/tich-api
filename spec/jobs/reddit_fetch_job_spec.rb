@@ -16,7 +16,6 @@ RSpec.describe 'RedditFetchJob', type: :job do
   let(:ticker) { create(:ticker, symbol: 'MSFT', formal_name: 'Microsoft', price: 1) }
 
   before do
-    ActiveJob::Base.queue_adapter = :test
     WebMock.stub_request(:get, "https://www.reddit.com/search.json?q=#{ticker.formal_name}&limit=3")
            .to_return(
              body: response_body,
@@ -34,6 +33,9 @@ RSpec.describe 'RedditFetchJob', type: :job do
   end
 
   describe '#perform_later' do
+    before do
+      ActiveJob::Base.queue_adapter = :test
+    end
     it 'enqueue job' do
       expect do
         RedditFetchJob.perform_later

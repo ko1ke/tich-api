@@ -6,8 +6,6 @@ RSpec.describe 'SpreadSheetFetchJob', type: :job do
   let(:response_body) { [{ "symbol": 'MSFT', "formalName": 'Microsoft', "price": 200, 'change': 2 }].to_json }
 
   before do
-    ActiveJob::Base.queue_adapter = :test
-
     ENV['GAS_EXEC_PATH'] = exec_path
     WebMock.stub_request(:get, "https://script.google.com/#{exec_path}")
            .to_return(
@@ -43,6 +41,9 @@ RSpec.describe 'SpreadSheetFetchJob', type: :job do
   end
 
   describe '#perform_later' do
+    before do
+      ActiveJob::Base.queue_adapter = :test
+    end
     it 'enqueue job' do
       expect do
         SpreadSheetFetchJob.perform_later
