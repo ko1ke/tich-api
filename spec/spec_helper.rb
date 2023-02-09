@@ -23,7 +23,9 @@ SimpleCov.start do
   add_group 'Services', 'app/services'
   add_group 'Controllers', 'app/controllers'
   add_group 'Helpers', 'app/helpers'
+  add_group 'Jobs', 'app/jobs'
 end
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
