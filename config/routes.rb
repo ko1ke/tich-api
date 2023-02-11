@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :users, only: %i[create]
+  put '/users/rank_up', to: 'users#rank_up'
+  patch '/users/rank_up', to: 'users#rank_up'
+
   resources :portfolios, only: %i[index create]
   resources :news, only: %i[index]
   namespace :news do
