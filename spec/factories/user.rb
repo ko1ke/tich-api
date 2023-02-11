@@ -7,5 +7,13 @@ FactoryBot.define do
       uid { 'uid' }
       email { 'test_another@test.com' }
     end
+
+    trait :silver_rank do
+      rank { 'silver' }
+    end
+
+    trait :gold_rank do
+      rank { 'gold' }
+    end
   end
 end

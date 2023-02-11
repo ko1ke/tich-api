@@ -59,4 +59,15 @@ RSpec.describe 'User', type: :request do
       end
     end
   end
+
+  describe 'PUT /users/rank_up' do
+    include_context 'login'
+
+    it 'returns user' do
+      put '/users/rank_up.json'
+      expect(JSON.parse(response.body)['rank']).not_to eq 'bronze'
+
+      expect(response).to have_http_status(200)
+    end
+  end
 end

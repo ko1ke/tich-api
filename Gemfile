@@ -81,3 +81,6 @@ gem 'kaminari'
 
 # Payment
 gem 'stripe'
+
+# State machine
+gem 'stateful_enum'

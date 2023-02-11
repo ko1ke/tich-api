@@ -1,4 +1,4 @@
-class TipsController < ApplicationController
+class ChipsController < ApplicationController
   def create
     Stripe.api_key = ENV['STRIPE_API_KEY']
     success_url = "#{ENV['FRONT_END_BASE_URL']}\/payment?success=true"

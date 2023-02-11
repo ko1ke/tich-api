@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :users, only: %i[create]
+  put '/users/rank_up', to: 'users#rank_up'
+  patch '/users/rank_up', to: 'users#rank_up'
+
   resources :portfolios, only: %i[index create]
   resources :news, only: %i[index]
   namespace :news do
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   resources :tickers, only: %i[index]
   post '/favorites', to: 'favorites#create'
   delete '/favorites/:news_id', to: 'favorites#destroy'
-  resources :tips, only: %i[create]
+  resources :chips, only: %i[create]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

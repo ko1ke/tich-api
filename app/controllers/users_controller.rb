@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def rank_up
+    authenticate_user
+
+    current_user.rank_up
+    render json: current_user, status: :ok
+  end
+
   private
 
   def token_from_request_headers
