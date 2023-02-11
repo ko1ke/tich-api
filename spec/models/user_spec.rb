@@ -24,5 +24,29 @@ describe User do
         end
       end
     end
+
+    describe 'rank_up' do
+      context 'rank is bronze' do
+        it 'is expected to be silver rank' do
+          user = build(:user)
+          user.rank_up
+          expect(user.rank).to eq 'silver'
+        end
+      end
+      context 'rank is silver' do
+        it 'is expected to be gold rank' do
+          user = build(:user, :silver_rank)
+          user.rank_up
+          expect(user.rank).to eq 'gold'
+        end
+      end
+      context 'rank is gold' do
+        it 'is expected to stay gold rank' do
+          user = build(:user, :gold_rank)
+          user.rank_up
+          expect(user.rank).to eq 'gold'
+        end
+      end
+    end
   end
 end
