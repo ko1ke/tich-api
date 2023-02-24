@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   delete '/favorites/:news_id', to: 'favorites#destroy'
   resources :chips, only: %i[create]
 
+  # Flipper
+  mount Flipper::Api.app(Flipper) => '/flipper/api' if Rails.env.development?
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -84,3 +84,8 @@ gem 'stripe'
 
 # State machine
 gem 'stateful_enum'
+
+# Feature flag
+gem 'flipper'
+gem 'flipper-active_record'
+gem 'flipper-api'

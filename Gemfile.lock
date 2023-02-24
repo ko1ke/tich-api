@@ -110,6 +110,14 @@ GEM
       jwt (~> 2.1, >= 2.1.0)
       redis (~> 4.0, >= 4.0.1)
       redis-namespace (~> 1.6, >= 1.6.0)
+    flipper (0.26.0)
+      concurrent-ruby (< 2)
+    flipper-active_record (0.26.0)
+      activerecord (>= 4.2, < 8)
+      flipper (~> 0.26.0)
+    flipper-api (0.26.0)
+      flipper (~> 0.26.0)
+      rack (>= 1.4, < 3)
     fugit (1.8.0)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -320,6 +328,9 @@ DEPENDENCIES
   faraday
   faraday_middleware
   firebase-auth-rails
+  flipper
+  flipper-active_record
+  flipper-api
   good_job (~> 3.7)
   jbuilder (~> 2.7)
   json-schema
