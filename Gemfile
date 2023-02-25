@@ -89,3 +89,7 @@ gem 'stateful_enum'
 gem 'flipper'
 gem 'flipper-active_record'
 gem 'flipper-api'
+
+# Elastic search
+gem 'elasticsearch-model', '~> 7'
+gem 'elasticsearch-rails', '~> 7'
