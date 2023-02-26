@@ -4,16 +4,19 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    restart: unless-stopped
     environment:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
       TZ: Asia/Tokyo
+
   redis:
     image: redis:latest
     ports:
       - 6379:6379
     volumes:
       - ./redis:/data
+
   web:
     stdin_open: true
     tty: true
@@ -26,6 +29,30 @@ services:
     depends_on:
       - db
       - redis
+      - elasticsearch
     environment:
       - REDIS_URL=redis://redis:6379
       - DATABASE_HOST=db
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    volumes:
+      - ./tmp/esdata:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.1
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch

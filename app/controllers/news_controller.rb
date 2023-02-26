@@ -1,5 +1,17 @@
-class NewsController < AuthController
+class NewsController < ApplicationController
   def index
-    @news = News.search(params[:keyword], current_user.id).sort_by_newest.page params[:page]
+    authenticate_user
+    @news = News.search(params[:keyword], current_user.id).page params[:page]
+  end
+
+  def es_index
+    render json: { message: 'cannnot access' }, status: :forbidden unless Flipper.enabled? :elastic_search
+
+    @news = if params[:keyword].present?
+              News.es_search(params[:keyword]).page params[:page]
+            else
+              News.all.page params[:page]
+            end
+    @current_user = current_user
   end
 end
