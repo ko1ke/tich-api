@@ -1,4 +1,6 @@
 class News < ApplicationRecord
+  include NewsElasticSerchable
+
   paginates_per 9
 
   has_many :favorites, dependent: :destroy
