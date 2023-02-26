@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:3000', 'https://tich-de99a.web.app'
+    origins 'http://localhost:3000', %r{\Ahttps://tich-de99a.*?\.web\.app\z}
 
     resource '*',
              headers: :any,
