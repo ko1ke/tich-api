@@ -5,6 +5,8 @@ class NewsController < ApplicationController
   end
 
   def es_index
+    render json: { message: 'cannnot access' }, status: :forbidden unless Flipper.enabled? :elastic_search
+
     @news = if params[:keyword].present?
               News.es_search(params[:keyword]).page params[:page]
             else

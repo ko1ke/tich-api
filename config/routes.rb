@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   resources :portfolios, only: %i[index create]
 
   resources :news, only: %i[index]
-  if Flipper.enabled? :elastic_search
-    scope :news do
-      get '/es', to: 'news#es_index'
-    end
+  scope :news do
+    get '/es', to: 'news#es_index'
   end
   namespace :news do
     resources :markets, only: %i[index]
