@@ -47,6 +47,8 @@ Google spread sheet。ティッカーおよび GOOGLEFINNCE 関数（株価を�
 
 - Ruby on Rails
 - faraday
-- cron
 - Docker
 - ~~Heroku~~ -> render.com
+- Rspec
+- Elastic Search
+- Github Action
