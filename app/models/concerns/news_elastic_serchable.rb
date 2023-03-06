@@ -16,7 +16,7 @@ module NewsElasticSerchable
         indexes :link_url, type: 'text'
         indexes :image_url, type: 'text'
         indexes :fetched_from, type: 'text'
-        indexes :symbol, type: 'text'
+        indexes :symbol, type: 'keyword'
         indexes :original_created_at, type: 'date'
       end
     end
