@@ -10,7 +10,10 @@ class NewsController < ApplicationController
     render json: { message: 'cannnot access' }, status: :forbidden unless elastic_search_flag_enabled?
 
     @news = if params[:keyword].present?
-              News.es_search(params[:keyword]).page params[:page]
+              News.es_search(params[:keyword],
+                             params[:type],
+                             params[:operator])
+                  .page params[:page]
             else
               News.all.page params[:page]
             end

@@ -49,14 +49,14 @@ module NewsElasticSerchable
       __elasticsearch__.index_exists?
     end
 
-    def es_search(query)
+    def es_search(keyword = '', type = 'cross_fields', operator = 'and')
       __elasticsearch__.search({
                                  query: {
                                    multi_match: {
                                      fields: %w[headline body symbol],
-                                     type: 'cross_fields',
-                                     query: query,
-                                     operator: 'and'
+                                     type: type,
+                                     query: keyword,
+                                     operator: operator
                                    }
                                  },
                                  "sort": [
